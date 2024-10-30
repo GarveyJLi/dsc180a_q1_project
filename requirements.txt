@@ -1,0 +1,8 @@
+pandas_plink 
+statsmodels 
+matplotlib
+pandas
+numpy
+sklearn
+tarfile
+gzip
