@@ -24,17 +24,17 @@ def extract_data():
 # alleles = .bim (snp. came from vcf file (txt file))
 # samples = .fam (family id)
 # genotypes = .bed (genotypes). Rows and columns defined by alleles and samples
-(alleles, samples, genotypes) = pp.read_plink("../data/LDREF/1000G.EUR.*",
-                             verbose=False)
-genotypes = pd.DataFrame(genotypes.compute())
+#(alleles, samples, genotypes) = pp.read_plink("../data/LDREF/1000G.EUR.*",
+#                             verbose=False)
+#genotypes = pd.DataFrame(genotypes.compute())
 
 #allele_freq_df = genotypes.copy(deep=True)
 #allele_freq_df['snp'] = alleles['snp']
 #allele_freq_df['freq_0'] = genotypes.apply(lambda x: x == 0).sum(axis=1) / 489
 #allele_freq_df['eaf'] = genotypes.apply(lambda x: x != 0).sum(axis=1) / 489
 #effect_allele_freq = allele_freq_df[['snp', 'eaf']]
-P = pd.read_csv(phenotype_data, sep='\t', compression='gzip')
-P
+#P = pd.read_csv(phenotype_data, sep='\t', compression='gzip')
+
 
 def cis_eQTL_analysis(chr, gene, alleles, samples, genotypes, phenotypes, window=500000, mult_gene=False):
     target_gene_data = phenotypes[phenotypes['Gene_Symbol']==gene].reset_index(drop=True)
