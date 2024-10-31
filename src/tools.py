@@ -42,7 +42,7 @@ def get_snps(gene, pos_file='', out_dir='', delete_pos=True):
     chr = get_chr(gene)
     if pos_file == '':
         pos_file = generate_pos_file(gene, out_dir=out_dir)
-    plink_cmd = f'./plink2 --bfile ../data/LDREF/1000G.EUR.{chr} --extract bed1 {pos_file} --out {out_dir}1000G.EUR.{chr}.{gene} --make-bed'
+    plink_cmd = f'{os.getcwd()}/plink2 --bfile ../data/LDREF/1000G.EUR.{chr} --extract bed1 {pos_file} --out {out_dir}1000G.EUR.{chr}.{gene} --make-bed'
     os.system(plink_cmd)
     if delete_pos:
         os.remove(pos_file)
