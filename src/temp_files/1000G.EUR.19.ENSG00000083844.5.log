@@ -1,0 +1,28 @@
+PLINK v2.0.0-a.6 32-bit (20 Oct 2024)
+Options in effect:
+  --bfile /home/gjl001/dsc180a_q1_project/src/temp_files/1000G.EUR.19.ENSG00000083844.5
+  --clump /home/gjl001/dsc180a_q1_project/src/temp_files/ENSG00000083844.5_eqtl_analysis.txt
+  --clump-id-field snp
+  --clump-kb 250
+  --clump-p-field p
+  --clump-p1 1e-05
+  --clump-r2 0.5
+  --out /home/gjl001/dsc180a_q1_project/src/temp_files/1000G.EUR.19.ENSG00000083844.5
+  --silent
+
+Hostname: gjl001-822671
+Working directory: /home/gjl001/dsc180a_q1_project/src
+Start time: Fri Nov  8 19:10:32 2024
+
+Random number seed: 1731121832
+515699 MiB RAM detected, ~446338 available; reserving 2047 MiB for main
+workspace.
+Using up to 256 threads (change this with --threads).
+489 samples (0 females, 0 males, 489 ambiguous; 489 founders) loaded from
+/home/gjl001/dsc180a_q1_project/src/temp_files/1000G.EUR.19.ENSG00000083844.5.fam.
+510 variants loaded from
+/home/gjl001/dsc180a_q1_project/src/temp_files/1000G.EUR.19.ENSG00000083844.5.bim.
+Note: No phenotype data present.
+Warning: No significant --clump results.  Skipping.
+
+End time: Fri Nov  8 19:10:32 2024
