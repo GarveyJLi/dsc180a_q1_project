@@ -56,7 +56,7 @@ def get_snps(gene, phenotypes, pos_file='', out_dir='', delete_pos=True):
     os.system(plink_cmd)
     if delete_pos:
         os.remove(pos_file)
-    return plink_cmd
+    return f'{out_dir}1000G.EUR.{chrom}.{gene}'
 
 def cis_eQTL_analysis(chrom, gene, alleles, samples, genotypes, phenotypes, window=500000, mult_gene=False):
     target_gene_data = phenotypes[phenotypes['Gene_Symbol']==gene].reset_index(drop=True)
@@ -99,7 +99,7 @@ def chr_analysis(chrom, alleles, samples, genotypes, phenotypes, window=500000):
     target_chrom_data = phenotypes[phenotypes['Chr']==chrom]
     all_genes = target_chrom_data['Gene_Symbol'].unique()
     all_analyses=[]
-    print(f'Starting cis-eQTL analyses for chromosome {chr}')
+    print(f'Starting cis-eQTL analyses for chromosome {chrom}')
 
     gene_counter = 0
     total_genes = len(all_genes)
@@ -114,10 +114,10 @@ def chr_analysis(chrom, alleles, samples, genotypes, phenotypes, window=500000):
 
 def clump(gene, phenotypes, eqtl_analysis_fp, p_val, r2, out_dir=''):
     # Get all snps within 500 kB of the target gene
-    get_snps(gene, phenotypes, out_dir=f'{os.getcwd()}/temp_files/', delete_pos=True)
+    snp_fp = get_snps(gene, phenotypes, out_dir=f'{os.getcwd()}/temp_files/', delete_pos=True)
     # Clump snps
-    to_clump = f'{os.getcwd()}/temp_files/1000G.EUR.{get_chrom(gene, phenotypes)}.{gene}'
-    clump_cmd = f'{os.getcwd()}/plink2 --bfile {to_clump} --clump-p1 {p_val} --clump-r2 {r2} --clump-kb 250 --clump {eqtl_analysis_fp} --clump-snp-field snp --clump-field p --out {to_clump} --silent'
+    #to_clump = f'{os.getcwd()}/temp_files/1000G.EUR.{get_chrom(gene, phenotypes)}.{gene}'
+    clump_cmd = f'{os.getcwd()}/plink2 --bfile {snp_fp} --clump-p1 {p_val} --clump-r2 {r2} --clump-kb 250 --clump {eqtl_analysis_fp} --clump-snp-field snp --clump-field p --out {to_clump} --silent'
     os.system(clump_cmd)
     #extract SNPs from clump output
     out_snps = f'{os.getcwd()}/temp_files/PRS.SNPs.{gene}'
@@ -296,7 +296,9 @@ def train_valid_test_split(alleles, samples, genotypes, phenotypes, train=0.8, v
     
 
 
-
+def to_vcf(input_fp, output_fp):
+    bcf_cmd = f'bcftools-install/bin/bcftools convert -c ID,CHROM,POS,AA,- -s sample1 -f ../data/Homo_sapiens.GRCh38.dna.primary_assembly.fa --tsv2vcf {input_fp} -o {output_fp}'
+    os.system(bcf_cmd)
 
 
 

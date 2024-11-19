@@ -1,0 +1,5 @@
+#define HTS_CC "gcc"
+#define HTS_CPPFLAGS "-I/home/gjl001/dsc180a_q1_project/src/bcftools-1.21/../zlib-1.3.1 -I/home/gjl001/dsc180a_q1_project/src/bcftools-1.21/../bzip2-1.0.8/include -I/home/gjl001/dsc180a_q1_project/src/bcftools-1.21/../xz-5.2.5/include"
+#define HTS_CFLAGS "-Wall -g -O2 -fvisibility=hidden"
+#define HTS_LDFLAGS "-L/home/gjl001/dsc180a_q1_project/src/bcftools-1.21/../zlib-1.3.1 -L/home/gjl001/dsc180a_q1_project/src/bcftools-1.21/../bzip2-1.0.8/lib -L/home/gjl001/dsc180a_q1_project/src/bcftools-1.21/../xz-5.2.5/lib -fvisibility=hidden "
+#define HTS_LIBS "-llzma -lbz2 -lz -lm  "

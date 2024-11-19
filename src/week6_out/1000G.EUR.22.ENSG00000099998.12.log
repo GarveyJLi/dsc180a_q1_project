@@ -1,0 +1,33 @@
+PLINK v1.9.0-b.7.7 64-bit (22 Oct 2024)
+Options in effect:
+  --bfile week6_out/1000G.EUR.22.ENSG00000099998.12
+  --ld-snp rs5760273
+  --ld-window 99999
+  --ld-window-kb 1000
+  --ld-window-r2 0
+  --out week6_out/1000G.EUR.22.ENSG00000099998.12
+  --r2
+
+Hostname: gjl001-2402805
+Working directory: /home/gjl001/dsc180a_q1_project/src
+Start time: Sun Nov 10 15:30:11 2024
+
+Random number seed: 1731281411
+257649 MB RAM detected; reserving 128824 MB for main workspace.
+358 variants loaded from .bim file.
+489 people (0 males, 0 females, 489 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to week6_out/1000G.EUR.22.ENSG00000099998.12.nosex .
+Using up to 127 threads (change this with --threads).
+Before main variant filters, 489 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is exactly 1.
+358 variants and 489 people pass filters and QC.
+Note: No phenotypes present.
+Running --r2 with the following filters:
+  --ld-window: 99999
+  --ld-window-kb: 1000
+  --ld-window-r2: 0
+  --ld-snp[s]
+--r2 to week6_out/1000G.EUR.22.ENSG00000099998.12.ld ... done.
+
+End time: Sun Nov 10 15:30:11 2024
