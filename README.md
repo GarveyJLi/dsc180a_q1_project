@@ -1,27 +1,49 @@
 # Genetic Risk Prediction with cis-eQTLs and Polygenic Risk Scores
 ## Garvey Li
 
-*README and instructions still WIP*
+
+## Welcome!
+Hi there! Welcome to my genetic risk prediction project. This repository contains the code I used to analyze genetic associations of cis-eQTLs across the human genome, as well as creating genetic risk models to predict gene expression levels and traits.
+
+This repository contains three notebooks corresponding to the 3 analyses done in my paper, which is linked HERE. The sections are as follows:
+
+1. Genome-wide cis-eQTL analysis
+2. Single gene PRS model training and evaluation using cis-eQTL analyses on the 1000 Genomes dataset
+3. PRS model training using GWAS summary statistics pertaining to individuals' heights.
 
 
-**Instructions**
+## Instructions
 
-1. The majority of the running code is located in `src/single_gene_prs.ipynb`. Install all the necessary requirements to run this notebook using `pip install -r requirements.txt` in the root directory of the repository. This can also be done in `src/single_gene_prs.ipynb` by uncommenting the line of code in the first cell and running the cell. 
+1. The data extraction and package installations required for the code to run can be done in any of the 3 notebooks located in the `src\` folder by uncommenting 
+`!pip install -r ../requirements.txt` in the first python cell and `extract_data()` in the second python cell, then running both cells. This only needs to be done once, so no need to do it in more than 1 notebook. 
 
-2. Run the 2nd cell to import the required packages as well as load the data required for my tools to run.
+2. After the packages have been installed and the data has been extracted, there is another step to take to ensure the tools written for the analyses work properly. The code requires a piece of software name `plink` and `plink2`. By default, it may not have permissions that allow it to work, so the following lines of code in cell 3 must be uncommented and run:
 
-3. Run the 3rd cell to ensure that the `plink2` software has been installed and is running correctly. More specific instructions on what to do are written in the notebook.
+    `!chmod 700 plink2`
 
-4. Load the datasets we are going to look at. There are a total of 4 dataframes
-    * alleles: A dataframe containing SNP metadata, such as chromosome, SNP id, position, and the reference and effect alleles. 
-    * samples: A dataframe containing metadata of the individuals whose data was used in the 1000 Genomes Project.
-    * genotypes: A dataframe containing the genetic variation measured for each individual across 1,190,321 SNPs
-    * P (phenotypes): A dataframe containing the levels of gene expression for each individual across 23,722 genes. 
+    `!chmod 700 plink`
 
-    
+3. Once you've made sure the required packages have been installed, the data has been extracted, and plink is able to run, you should be able to run the code in the notebooks.
 
-5. To run an eQTL analysis on any gene in cell 5, simply pick a gene from the `P` dataframe and store its `Chr` and `TargetID` values in the variables `chr_to_explore` and `gene_to_explore`, respectively.
+### Part 1: Genome-wide cis-eQTL analysis
 
-6. To run an eQTL across all genes in a chromosome, uncomment the 2 lines of code in cell 6, and run the cell.
+This section of my analysis contains results from the notebook located at `src\genome_wide_ciseqtl_analysis.ipynb`. 
 
-7. To create a histogram of the polygenic risk scores of the gene selected in step 4, run cell 7.
+The code in cell 5 originally parsed through each of the 23722 genes available in the dataset across 22 chromosomes in order to conduct cis-eQTL analyses on each of them. However, the code for this has been commented out and the results of this have been saved to `src\genome_wide_ciseqtl_analysis\`, as it takes quite a while to run. 
+
+The results can be loaded in the 6th python cell, titled `Results from the genome wide cis-eQTL analysis`, and may take a few seconds before completion, as the result files are so large. If this code fails to run at all, it is likely that your machine has run out of memory, so be wary.
+
+### Part 2: Single gene PRS model training and evaluation using cis-eQTL analyses on the 1000 Genomes dataset
+
+This section of my analysis contains results from the notebook located at `src\single_gene_prs.ipynb`. 
+
+The code in this notebook generates PRS models for various genes related to cardiovascular diseases, type 1 diabetes, and type 2 diabetes (in that order). They are evaluated against their respective null models and compared to the corresponding gene expression distributions. 
+
+The code required to generate 10 different PRS distributions requires quite a bit of memory, so once again, be wary.
+
+### Part 3: PRS model training using GWAS summary statistics pertaining to individuals' heights.
+
+This section of my analysis contains results from the notebook located at `src\height_prs.ipynb`. 
+
+This section explores the use of genome-wide association study (GWAS) summary statistics to train PRS models predicting individuals' heights. Although the summary statistics do not contain any data that allow for evaluation (e.g. gene expression levels), they can be loosely evaluated using individual's samples with known traits. A `.vcf` file created from 23andMe data can be uploaded to the `data\` folder and compared against the PRS model for height. To do so, replace the vcf filepath `vcf_fp = '../data/f_eur_sample.vcf'` in cell 4 with the name of your `.vcf` file, and you can see where you lie on the PRS distribution. 
+
