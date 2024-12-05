@@ -5,7 +5,7 @@
 ## Welcome!
 Hi there! Welcome to my genetic risk prediction project. This repository contains the code I used to analyze genetic associations of cis-eQTLs across the human genome, as well as creating genetic risk models to predict gene expression levels and traits.
 
-This repository contains three notebooks corresponding to the 3 analyses done in my paper, which is linked HERE. The sections are as follows:
+This repository contains three notebooks corresponding to the 3 analyses done in my paper, which is linked [here](genetic_risk_prediction_with_prs.pdf). The sections are as follows:
 
 1. Genome-wide cis-eQTL analysis
 2. Single gene PRS model training and evaluation using cis-eQTL analyses on the 1000 Genomes dataset
